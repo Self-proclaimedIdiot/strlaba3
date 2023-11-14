@@ -1,7 +1,9 @@
 ﻿// strlaba3.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
 //
+#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <string.h>
+
 template <class T>
 struct Element {
     T data;
@@ -15,11 +17,11 @@ class MyList {
     int count = 0;
 public:
     Element<T>* Move(int index) {
-        Element<T>* ptr = beginning;
+        current = beginning;
         for (int i = 0; i < index; i++) {
-            ptr = ptr->next;
+            ++(*this);
         }
-        return ptr;
+        return current;
     }
     void Add(T data) {
         Element<T>* elem = new Element <T>;
@@ -38,34 +40,61 @@ public:
         count++;
     }
     void Insert(T data, int index) {
-        Element<T>* elem = new Element <T>;
-        elem->data = data;
-        if (index == 0) {
-            elem->next = beginning;
-            beginning = elem;
-        }
-        else {
-            Element<T>* previous = Move(index - 1);
-            elem->next = previous->next;
-            previous->next = elem;
-        }
+        if (index <= count) {
+            Element<T>* elem = new Element <T>;
+            elem->data = data;
+            if (index == 0) {
+                elem->next = beginning;
+                beginning = elem;
+            }
+            else {
+                Element<T>* previous = Move(index - 1);
+                elem->next = previous->next;
+                previous->next = elem;
+                end = index == count ? elem : end;
+            }
             count++;
+        }
+    }
+    int FirstEnter(T value) {
+        current = beginning;
+        for (int i = 0; i < count; i++) {
+            if (current->data == value)
+                return i;
+            ++(*this);
+        }
     }
     void Delete(int position) {
+        Element<T>* delElem;
         if (position == 0) {
-            Element<T>* delElem = beginning;
+             delElem = beginning;
             beginning = beginning->next;
-            delete delElem;
         }
         else {
-            Element<T>* delElem = Move(position);
+            delElem = Move(position);
             Element<T>* PrevElem = Move(position - 1);
             Element<T>* NextElem = Move(position + 1);
             PrevElem->next = NextElem;
             end = position == count - 1 ? PrevElem : end;
-            end->next = position == count - 1 ? PrevElem : end;
-            delete delElem;
         }
+        delete delElem;
+        count--;
+    }
+    void Delete(T value) {
+        int position = FirstEnter(value);
+        Element<T>* delElem;
+        if (position == 0) {
+            delElem = beginning;
+            beginning = beginning->next;
+        }
+        else {
+            delElem = Move(position);
+            Element<T>* PrevElem = Move(position - 1);
+            Element<T>* NextElem = Move(position + 1);
+            PrevElem->next = NextElem;
+            end = position == count - 1 ? PrevElem : end;
+        }
+        delete delElem;
         count--;
     }
     void operator++() {
@@ -102,16 +131,28 @@ public:
             ++(*this);
         }
     }
+    T GetValue(int index) {return Move(index)->data;}
     Element<T>* Front() { return beginning; }
     Element<T>* Back() { return end; }
     bool Empty() { return beginning == nullptr || end == nullptr;}
     int Size() { return count; }
 };
-
+void do_magic(MyList<char>& s) {
+    while (s.Front()->data == ' ') {
+        s.Delete(' ');
+    }
+    while (s.Back()->data == ' ') {
+        s.Delete(s.Size() - 1);
+    }
+}
 int main()
 {
     MyList<char> somelist;
-    somelist.Scanner("Death!");
+    char c = ' ';
+    char* s = &c;
+    scanf("%s", s);
+    somelist.Scanner(s);
+    do_magic(somelist);
     somelist.PrinterViaCurrent();
 }
 
