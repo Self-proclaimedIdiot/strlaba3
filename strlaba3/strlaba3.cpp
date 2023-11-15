@@ -137,9 +137,11 @@ public:
         Move(index2)->data = switcher;
     }
     void BubbleSort() {
-        int j = 0;
-        for (int i = 0; i < count - j; i++) {
-
+        for (int j = 1; j < count; j++) {
+            for (int i = 0; i < count - j; i++) {
+                if (GetValue(i) > GetValue(i + 1))
+                    Switch(i, i + 1);
+            }
         }
     }
     T GetValue(int index) {return Move(index)->data;}
@@ -162,8 +164,8 @@ int main()
     /*char c = ' ';
     char* s = &c;
     scanf("%s", s);*/
-    somelist.Scanner("Death!");
-    somelist.Switch(0, 1);
+    somelist.Scanner("babbcd");
+    somelist.BubbleSort();
     somelist.PrinterViaCurrent();
 }
 
