@@ -176,43 +176,12 @@ public:
             i++;
         }
     }
-    void ChoiceSort() {
-        Element<T>* mindata;
-        int i = 0, minindex;
-        while (i+1 < count)
-        {
-            mindata = Move(i + 1);
-            minindex = (i + 1);
-            for (int j = i+1; j < count; j++)
-            {
-                if (GetValue(minindex) > GetValue(j))
-                {
-                    mindata = Move(j);
-                    minindex = j;
-                }
 
-            }
-            Switch(i, minindex);
-            i++;
-        }
-        
-    }
     T GetValue(int index) {return Move(index)->data;}
     Element<T>* Front() { return beginning; }
     Element<T>* Back() { return end; }
     bool Empty() { return beginning == nullptr || end == nullptr;}
     int Size() { return count; }
-    void Switch(int index1, int index2) {
-        T switcher = GetValue(index1);
-        Move(index1)->data = GetValue(index2);
-        Move(index2)->data = switcher;
-    }
-    void BubbleSort() {
-        int j = 0;
-        for (int i = 0; i < count - j; i++) {
-
-        }
-    }
     void vstavki()
     {
         T elementik;
