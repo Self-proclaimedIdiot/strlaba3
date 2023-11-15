@@ -232,7 +232,6 @@ public:
     }
     void obmen()
     {
-        T elementik;
         int smena = 0;
         do {
             smena = 0;
@@ -247,7 +246,7 @@ public:
         } while (smena);
     }
 };
-int do_magic(MyList<char>& kuks) {
+int tochka1(MyList<char>& kuks) {
     int mesto = 0;
     char c;
     printf("Input a string: ");
@@ -269,7 +268,7 @@ int do_magic(MyList<char>& kuks) {
 
 int main()
 {
-<<<<<<< HEAD
+
     MyList<char> kuks;
     char c;
     printf("Input a string a: ");
@@ -278,11 +277,11 @@ int main()
         kuks.Add(c);
         c = getchar();
     }
-   // printf("%d", do_magic(kuks));
+   // printf("%d", tochka1(kuks));
    // kuks.vstavki();
     kuks.obmen();
    kuks.Printer();
-=======
+
     MyList<char> somelist;
     /*char c = ' ';
     char* s = &c;
@@ -290,7 +289,6 @@ int main()
     somelist.Scanner("898768129960871290978691");
     somelist.ShakerSort();
     somelist.PrinterViaCurrent();
->>>>>>> 11a6dc4d34bb1a460c80f7a103d0c9f455c131af
 }
 
 // Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"
