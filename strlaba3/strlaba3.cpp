@@ -136,24 +136,85 @@ public:
     Element<T>* Back() { return end; }
     bool Empty() { return beginning == nullptr || end == nullptr;}
     int Size() { return count; }
+    void Switch(int index1, int index2) {
+        T switcher = GetValue(index1);
+        Move(index1)->data = GetValue(index2);
+        Move(index2)->data = switcher;
+    }
+    void BubbleSort() {
+        int j = 0;
+        for (int i = 0; i < count - j; i++) {
+
+        }
+    }
+    void vstavki()
+    {
+        T elementik;
+        int location;
+        for (int i = 1; i < Size(); i++)
+        {
+            elementik=GetValue(i);
+            location = i - 1;
+            int j = i;
+            while ((location >= 0) && (GetValue(location) > GetValue(j)))
+            {
+                Switch(location, j);
+                location = location - 1;
+                j--;
+            }
+        }
+    }
+    void obmen()
+    {
+        T elementik;
+        int smena = 0;
+        do {
+            smena = 0;
+            for (int i = 0; i < Size()-1; i++)
+            {
+                if (GetValue(i+1) < GetValue(i))
+                {
+                    Switch(i + 1, i);
+                    smena += 1;
+                }
+            }
+        } while (smena);
+    }
 };
-void do_magic(MyList<char>& s) {
-    while (s.Front()->data == ' ') {
-        s.Delete(' ');
+int do_magic(MyList<char>& kuks) {
+    int mesto = 0;
+    char c;
+    printf("Input a string: ");
+    c = getchar();
+    while (c != '\n') {
+        kuks.Add(c);
+        c = getchar();
     }
-    while (s.Back()->data == ' ') {
-        s.Delete(s.Size() - 1);
+    for (int i = 0; i < kuks.Size(); i++) {
+        if (kuks.GetValue(i) == '.')
+        {
+            mesto = i;
+            break;
+        }
     }
+    return mesto+1;
 }
+
+
 int main()
 {
-    MyList<char> somelist;
-    char c = ' ';
-    char* s = &c;
-    scanf("%s", s);
-    somelist.Scanner(s);
-    do_magic(somelist);
-    somelist.PrinterViaCurrent();
+    MyList<char> kuks;
+    char c;
+    printf("Input a string: ");
+    c = getchar();
+    while (c != '\n') {
+        kuks.Add(c);
+        c = getchar();
+    }
+   // printf("%d", do_magic(kuks));
+   // kuks.vstavki();
+    kuks.obmen();
+   kuks.Printer();
 }
 
 // Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"
