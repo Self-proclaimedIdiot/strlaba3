@@ -131,6 +131,17 @@ public:
             ++(*this);
         }
     }
+    void Switch(int index1, int index2) {
+        T switcher = GetValue(index1);
+        Move(index1)->data = GetValue(index2);
+        Move(index2)->data = switcher;
+    }
+    void BubbleSort() {
+        int j = 0;
+        for (int i = 0; i < count - j; i++) {
+
+        }
+    }
     T GetValue(int index) {return Move(index)->data;}
     Element<T>* Front() { return beginning; }
     Element<T>* Back() { return end; }
@@ -148,11 +159,11 @@ void do_magic(MyList<char>& s) {
 int main()
 {
     MyList<char> somelist;
-    char c = ' ';
+    /*char c = ' ';
     char* s = &c;
-    scanf("%s", s);
-    somelist.Scanner(s);
-    do_magic(somelist);
+    scanf("%s", s);*/
+    somelist.Scanner("Death!");
+    somelist.Switch(0, 1);
     somelist.PrinterViaCurrent();
 }
 
