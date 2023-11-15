@@ -156,6 +156,26 @@ public:
             }
         }
     }
+    void ChoiceSort() {
+        Element<T>* mindata;
+        int i = 0, minindex;
+        while (i + 1 < count)
+        {
+            mindata = Move(i + 1);
+            minindex = (i + 1);
+            for (int j = i + 1; j < count; j++)
+            {
+                if (GetValue(minindex) > GetValue(j))
+                {
+                    mindata = Move(j);
+                    minindex = j;
+                }
+
+            }
+            Switch(i, minindex);
+            i++;
+        }
+    }
     T GetValue(int index) {return Move(index)->data;}
     Element<T>* Front() { return beginning; }
     Element<T>* Back() { return end; }
