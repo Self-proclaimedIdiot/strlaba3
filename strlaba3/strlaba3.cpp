@@ -144,6 +144,18 @@ public:
             }
         }
     }
+    void ShakerSort() {
+        for (int j = 0; j < count; j++) {
+            for (int i = 0 + j; i < count - 1 - j; i++) {
+                if (GetValue(i) > GetValue(i + 1))
+                    Switch(i, i + 1);
+            }
+            for (int i = count - 1 - j; i > 0 + j; i--) {
+                if (GetValue(i) < GetValue(i - 1))
+                    Switch(i, i-1);
+            }
+        }
+    }
     T GetValue(int index) {return Move(index)->data;}
     Element<T>* Front() { return beginning; }
     Element<T>* Back() { return end; }
@@ -164,8 +176,8 @@ int main()
     /*char c = ' ';
     char* s = &c;
     scanf("%s", s);*/
-    somelist.Scanner("babbcd");
-    somelist.BubbleSort();
+    somelist.Scanner("898768129960871290978691");
+    somelist.ShakerSort();
     somelist.PrinterViaCurrent();
 }
 
