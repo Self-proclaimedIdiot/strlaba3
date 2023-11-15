@@ -131,6 +131,51 @@ public:
             ++(*this);
         }
     }
+    void Switch(int index1, int index2) {
+        T switcher = GetValue(index1);
+        Move(index1)->data = GetValue(index2);
+        Move(index2)->data = switcher;
+    }
+    void BubbleSort() {
+        for (int j = 1; j < count; j++) {
+            for (int i = 0; i < count - j; i++) {
+                if (GetValue(i) > GetValue(i + 1))
+                    Switch(i, i + 1);
+            }
+        }
+    }
+    void ShakerSort() {
+        for (int j = 0; j < count; j++) {
+            for (int i = 0 + j; i < count - 1 - j; i++) {
+                if (GetValue(i) > GetValue(i + 1))
+                    Switch(i, i + 1);
+            }
+            for (int i = count - 1 - j; i > 0 + j; i--) {
+                if (GetValue(i) < GetValue(i - 1))
+                    Switch(i, i-1);
+            }
+        }
+    }
+    void ChoiceSort() {
+        Element<T>* mindata;
+        int i = 0, minindex;
+        while (i + 1 < count)
+        {
+            mindata = Move(i + 1);
+            minindex = (i + 1);
+            for (int j = i + 1; j < count; j++)
+            {
+                if (GetValue(minindex) > GetValue(j))
+                {
+                    mindata = Move(j);
+                    minindex = j;
+                }
+
+            }
+            Switch(i, minindex);
+            i++;
+        }
+    }
     T GetValue(int index) {return Move(index)->data;}
     Element<T>* Front() { return beginning; }
     Element<T>* Back() { return end; }
@@ -203,6 +248,7 @@ int do_magic(MyList<char>& kuks) {
 
 int main()
 {
+<<<<<<< HEAD
     MyList<char> kuks;
     char c;
     printf("Input a string a: ");
@@ -215,6 +261,15 @@ int main()
    // kuks.vstavki();
     kuks.obmen();
    kuks.Printer();
+=======
+    MyList<char> somelist;
+    /*char c = ' ';
+    char* s = &c;
+    scanf("%s", s);*/
+    somelist.Scanner("898768129960871290978691");
+    somelist.ShakerSort();
+    somelist.PrinterViaCurrent();
+>>>>>>> 11a6dc4d34bb1a460c80f7a103d0c9f455c131af
 }
 
 // Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"
