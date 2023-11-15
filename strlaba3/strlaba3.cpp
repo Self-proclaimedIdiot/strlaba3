@@ -205,7 +205,7 @@ int main()
 {
     MyList<char> kuks;
     char c;
-    printf("Input a string: ");
+    printf("Input a string a: ");
     c = getchar();
     while (c != '\n') {
         kuks.Add(c);
