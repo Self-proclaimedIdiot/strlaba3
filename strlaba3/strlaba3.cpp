@@ -63,6 +63,7 @@ public:
                 return i;
             ++(*this);
         }
+        return NULL;
     }
     void Delete(int position) {
         Element<T>* delElem;
@@ -80,7 +81,7 @@ public:
         delete delElem;
         count--;
     }
-    void Delete(T value) {
+    void DeletebyValue(T value) {
         int position = FirstEnter(value);
         Element<T>* delElem;
         if (position == 0) {
@@ -131,6 +132,18 @@ public:
             ++(*this);
         }
     }
+    T Max() {
+        T max = beginning->data;
+        int index = 0;
+        int i = 1;
+        for (i = 1; i < count; i++) {
+            if (GetValue(i) > max) {
+                max = GetValue(i);
+                index = i;
+            }
+        }
+        return max;
+    }
     void Switch(int index1, int index2) {
         T switcher = GetValue(index1);
         Move(index1)->data = GetValue(index2);
@@ -176,8 +189,20 @@ public:
             i++;
         }
     }
-
-    T GetValue(int index) {return Move(index)->data;}
+    void Clear() {
+        int c = count;
+        for (int i = 1; i <= c; i++) {
+            Delete(0);
+        }
+        count = 0;
+        beginning = nullptr;
+        end = nullptr;
+    }
+    T GetValue(int index) {
+        if (Move(index)!= nullptr)
+            return Move(index)->data;
+        else return NULL;
+    }
     Element<T>* Front() { return beginning; }
     Element<T>* Back() { return end; }
     bool Empty() { return beginning == nullptr || end == nullptr;}
@@ -214,49 +239,53 @@ public:
             }
         } while (smena);
     }
-};
-int tochka1(MyList<char>& kuks) {
-    int mesto = 0;
-    char c;
-    printf("Input a string: ");
-    c = getchar();
-    while (c != '\n') {
-        kuks.Add(c);
-        c = getchar();
-    }
-    for (int i = 0; i < kuks.Size(); i++) {
-        if (kuks.GetValue(i) == '.')
-        {
-            mesto = i;
-            break;
+    void BrushSort(){
+        int space = count-1;
+        while (space) {
+            for (int i = 0; GetValue(i + space) != NULL; i++) {
+                if (GetValue(i) > GetValue(i + space))
+                    Switch(i, i + space);
+            }
+            space--;
         }
     }
-    return mesto+1;
+   /* void CountSort() {
+        int max = (int)Max();
+        int* a = (int*)calloc(max, sizeof(T));
+        for (int i = 0; i <= max; i++) {
+            a[i] = 0;
+        }
+        current = beginning;
+        while(current != nullptr) {
+            a[(int)(current->data)]++;
+                ++(*this);
+        }
+        Clear();
+        for (int i = 0; i <= max; i++) {
+            if (i == 97) {
+                ;
+            }
+            for (int j = 0; j < a[i]; j++) {
+                Add((T)i);
+            }
+        }
+    }*/
+};
+   void do_magic(MyList<char>& s) {
+    while (s.Front()->data == ' ') {
+        s.DeletebyValue(' ');
+    }
+    while (s.Back()->data == ' ') {
+        s.Delete(s.Size() - 1);
+    }
 }
 
 
 int main()
 {
-
-    MyList<char> kuks;
-    char c;
-    printf("Input a string a: ");
-    c = getchar();
-    while (c != '\n') {
-        kuks.Add(c);
-        c = getchar();
-    }
-   // printf("%d", tochka1(kuks));
-   // kuks.vstavki();
-    kuks.obmen();
-   kuks.Printer();
-
     MyList<char> somelist;
-    /*char c = ' ';
-    char* s = &c;
-    scanf("%s", s);*/
-    somelist.Scanner("898768129960871290978691");
-    somelist.ShakerSort();
+    somelist.Scanner("huinya");
+    somelist.BrushSort();
     somelist.PrinterViaCurrent();
 }
 
