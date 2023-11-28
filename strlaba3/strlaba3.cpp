@@ -311,7 +311,29 @@ public:
         }
         free(a);
     }
-    
+    void QuickSort(int i, int j)
+    {
+        T pivot;
+        int lh = i;
+        int rh = j;
+        pivot = GetValue(i);
+        while (i <= j)
+        {
+            while ((GetValue(i) < pivot))
+                i++;
+            while ((GetValue(j) > pivot))
+                j--;
+            if (i <= j)
+            {
+                if (GetValue(i) >= GetValue(j))
+                    Switch(i, j);
+                i++;
+                j--;
+            }
+        }
+        if (lh < j) QuickSort(lh, j);
+        if (i < rh) QuickSort(i, rh);
+    }
     int Search(T selm, int l, int r)
     {
         printf("borders - %d %d", l, r);
@@ -351,6 +373,30 @@ public:
         }return -9;
     }
 };
+int tochka1()
+{
+    int mesto = 0;
+    MyList<char> kuks;
+    char c;
+    printf("Vvedite stroku ");
+    c = getchar();
+    while (c != '\n') 
+    {
+        kuks.Add(c);
+        c = getchar();
+    }
+    for (int i = 0; i < kuks.Size(); i++) 
+    {
+        if (kuks.GetValue(i) == '.')
+        {
+            mesto = i+1;
+            break;
+        }
+    }
+    if (mesto)
+        return mesto;
+    else return 0;
+}
    void do_magic(MyList<char>& s) {
     while (s.Front()->data == ' ') {
         s.DeletebyValue(' ');
@@ -364,6 +410,8 @@ public:
 int main()
 {
     MyList<char> somelist;
+   // printf("Mesto: %d", tochka1());
+   // printf("\n");
     //somelist.Scanner("e575457475453656434634636647435i0i3ur09q3ur03u04873q9-48-9348q3uq07ruu90890-9-00i-i9i-i-9i9");
     somelist.Scanner("654987321gfdcba");
   //  somelist.CountSort();
@@ -376,11 +424,9 @@ int main()
     if (somelist.SearchWhile(selm, 0, b) >= 0)
         printf("searched el in list");
     else printf("this el not in list");
-=======
-    somelist.Scanner("lbuigiuguoguoguooi8h8ipuipuogivgiohuvuohgiikhiv");
-    somelist.ChoiceSort();
-    somelist.PrinterViaCurrent();
->>>>>>> 3dd3c3a73163740bc0e42ef781bb03e91651244f
+   // somelist.Scanner("lbuigiuguoguoguooi8h8ipuipuogivgiohuvuohgiikhiv");
+    //somelist.ChoiceSort();
+    //somelist.PrinterViaCurrent();
 }
 
 // Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"
