@@ -283,6 +283,7 @@ public:
         }
         free(a);
     }
+    
     int Search(T selm, int l, int r)
     {
         printf("borders - %d %d", l, r);
@@ -355,11 +356,11 @@ int main()
     MyList<char> somelist;
     //somelist.Scanner("e575457475453656434634636647435i0i3ur09q3ur03u04873q9-48-9348q3uq07ruu90890-9-00i-i9i-i-9i9");
     somelist.Scanner("654987321gfdcba");
-    somelist.CountSort();
-    somelist.PrinterViaCurrent();
+  //  somelist.CountSort();
+  //  somelist.PrinterViaCurrent();
     int b = somelist.Size();
     char selm = '6';
-    somelist.ChoiceSort();
+    somelist.QuickSort(0,b-1);
     somelist.Printer();
     printf(" ento bil list \n");
     if (somelist.SearchWhile(selm, 0, b) >= 0)
