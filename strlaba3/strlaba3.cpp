@@ -211,7 +211,7 @@ public:
     Element<T>* Back() { return end; }
     bool Empty() { return beginning == nullptr || end == nullptr;}
     int Size() { return count; }
-    void vstavki()
+    void InsertSearch()
     {
         T elementik;
         int location;
@@ -228,7 +228,7 @@ public:
             }
         }
     }
-    void obmen()
+    void ExchangeSort()
     {
         int smena = 0;
         do {
