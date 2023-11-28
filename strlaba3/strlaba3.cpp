@@ -172,11 +172,11 @@ public:
     void ChoiceSort() {
         Element<T>* mindata;
         int i = 0, minindex;
-        while (i + 1 < count)
+        while (i < count)
         {
-            mindata = Move(i + 1);
-            minindex = (i + 1);
-            for (int j = i + 1; j < count; j++)
+            mindata = Move(i);
+            minindex = (i);
+            for (int j = i; j < count; j++)
             {
                 if (GetValue(minindex) > GetValue(j))
                 {
@@ -191,7 +191,12 @@ public:
     }
     MyList<T>* Split() {
         MyList<T>* parts = (MyList<T>*)calloc(2, sizeof(MyList<T>));
-
+        int i;
+        for(i = 0;i < count / 2;i++)
+            parts[0].Add(GetValue(i));
+        for (i = count / 2; i < count; i++)
+            parts[1].Add(GetValue(i));
+        return parts;
     }
     void Clear() {
         int c = count;
@@ -211,7 +216,7 @@ public:
     Element<T>* Back() { return end; }
     bool Empty() { return beginning == nullptr || end == nullptr;}
     int Size() { return count; }
-    void vstavki()
+    void InserSort()
     {
         T elementik;
         int location;
@@ -228,7 +233,7 @@ public:
             }
         }
     }
-    void obmen()
+    void ExchangeSort()
     {
         int smena = 0;
         do {
@@ -297,8 +302,8 @@ public:
 int main()
 {
     MyList<char> somelist;
-    somelist.Scanner("e575457475453656434634636647435i0i3ur09q3ur03u04873q9-48-9348q3uq07ruu90890-9-00i-i9i-i-9i9");
-    somelist.CountSort();
+    somelist.Scanner("lbuigiuguoguoguooi8h8ipuipuogivgiohuvuohgiikhiv");
+    somelist.ChoiceSort();
     somelist.PrinterViaCurrent();
 }
 
