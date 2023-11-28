@@ -288,6 +288,44 @@ public:
         }
         free(a);
     }
+    int Search(T selm, int l, int r)
+    {
+        printf("borders - %d %d", l, r);
+        printf("\n");
+        T midel = Move((l + r) / 2)->data;
+        printf("elem = %c", midel);
+        printf("\n");
+        if (selm > midel)
+        {
+            int i = (l + r) / 2 + 1;
+            Search(selm, i, count);
+        }
+        else if (selm < midel)
+        {
+            int i = (l + r) / 2 - 1;
+            Search(selm, 0, i);
+        }
+        else return midel;
+    }
+    int SearchWhile(T selm, int l, int r)
+    {
+        while (l <= r)
+        {
+            printf("borders - %d %d", l, r);
+            printf("\n");
+            T midel = Move((l + r - 1) / 2)->data;
+            printf("elem = %c", midel);
+            printf("\n");
+            if (selm < midel)
+                r = (l + r) / 2 - 1;
+            else if (selm > midel)
+                l = (l + r) / 2 + 1;
+            else
+            {
+                return midel;
+            }
+        }return -9;
+    }
 };
    void do_magic(MyList<char>& s) {
     while (s.Front()->data == ' ') {
