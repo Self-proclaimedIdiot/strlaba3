@@ -189,6 +189,10 @@ public:
             i++;
         }
     }
+    MyList<T>* Split() {
+        MyList<T>* parts = (MyList<T>*)calloc(2, sizeof(MyList<T>));
+
+    }
     void Clear() {
         int c = count;
         for (int i = 1; i <= c; i++) {
@@ -249,9 +253,17 @@ public:
             space--;
         }
     }
-   /* void CountSort() {
+    void MergeSort() {
+        if (count == 1) {
+            return;
+        }
+        else {
+
+        }
+    }
+    void CountSort() {
         int max = (int)Max();
-        int* a = (int*)calloc(max, sizeof(T));
+        int* a = (int*)calloc(max+1, sizeof(int));
         for (int i = 0; i <= max; i++) {
             a[i] = 0;
         }
@@ -269,7 +281,8 @@ public:
                 Add((T)i);
             }
         }
-    }*/
+        free(a);
+    }
 };
    void do_magic(MyList<char>& s) {
     while (s.Front()->data == ' ') {
@@ -284,8 +297,8 @@ public:
 int main()
 {
     MyList<char> somelist;
-    somelist.Scanner("huinya");
-    somelist.BrushSort();
+    somelist.Scanner("e575457475453656434634636647435i0i3ur09q3ur03u04873q9-48-9348q3uq07ruu90890-9-00i-i9i-i-9i9");
+    somelist.CountSort();
     somelist.PrinterViaCurrent();
 }
 
