@@ -258,13 +258,36 @@ public:
             space--;
         }
     }
-    void MergeSort() {
-        if (count == 1) {
-            return;
+    /// <summary>
+    /// Рекурсивно делит список по частям, пока может.
+    /// </summary>
+    /// <param name="pair">пара нужна, чтобы потом обратно сшить</param>
+    void SplitterPart(MyList<T> pair) {
+        if (count > 1) {
+            MyList<T>* parts = Split(); //Split() возвращает указатель на массив из двух частей спиика
+            parts[0].SplitterPart(parts[1]);
+            parts[1].SplitterPart(parts[0]);
         }
         else {
-
+            MergerPart(pair);
         }
+    }
+    /// <summary>
+    /// По аналогии должно рекурсивно все сшивать, но я не знаю, как заставить это работать.
+    /// </summary>
+    /// <param name="pair"></param>
+    /// <returns></returns>
+    MyList<T> MergerPart(MyList<T> pair) {
+        MyList<T> merged;
+        merged.Add(GetValue(0));//объединение работает только с единичными массивами, да
+        merged.Add(pair.GetValue(0));
+        if (GetValue(0) > pair.GetValue(0)) {
+            merged.Switch(0, 1);
+        }
+        return merged;
+    }
+    void MergeSort() {
+        
     }
     void CountSort() {
         int max = (int)Max();
