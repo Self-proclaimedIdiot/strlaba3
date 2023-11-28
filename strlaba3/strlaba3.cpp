@@ -174,8 +174,8 @@ public:
         int i = 0, minindex;
         while (i + 1 < count)
         {
-            mindata = Move(i + 1);
-            minindex = (i + 1);
+            mindata = Move(i);
+            minindex = (i);
             for (int j = i + 1; j < count; j++)
             {
                 if (GetValue(minindex) > GetValue(j))
@@ -353,15 +353,16 @@ int tochka1(MyList<char>& kuks) {
 int main()
 {
     MyList<char> somelist;
-    somelist.Scanner("e575457475453656434634636647435i0i3ur09q3ur03u04873q9-48-9348q3uq07ruu90890-9-00i-i9i-i-9i9");
+    //somelist.Scanner("e575457475453656434634636647435i0i3ur09q3ur03u04873q9-48-9348q3uq07ruu90890-9-00i-i9i-i-9i9");
+    somelist.Scanner("654987321gfdcba");
     somelist.CountSort();
     somelist.PrinterViaCurrent();
     int b = somelist.Size();
-    char selm = 's';
+    char selm = '6';
     somelist.ChoiceSort();
     somelist.Printer();
     printf(" ento bil list \n");
-    if (somelist.Search(selm, 0, b) >= 0)
+    if (somelist.SearchWhile(selm, 0, b) >= 0)
         printf("searched el in list");
     else printf("this el not in list");
 }
