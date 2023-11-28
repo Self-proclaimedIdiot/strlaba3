@@ -172,11 +172,11 @@ public:
     void ChoiceSort() {
         Element<T>* mindata;
         int i = 0, minindex;
-        while (i + 1 < count)
+        while (i < count)
         {
             mindata = Move(i);
             minindex = (i);
-            for (int j = i + 1; j < count; j++)
+            for (int j = i; j < count; j++)
             {
                 if (GetValue(minindex) > GetValue(j))
                 {
@@ -191,7 +191,12 @@ public:
     }
     MyList<T>* Split() {
         MyList<T>* parts = (MyList<T>*)calloc(2, sizeof(MyList<T>));
-
+        int i;
+        for(i = 0;i < count / 2;i++)
+            parts[0].Add(GetValue(i));
+        for (i = count / 2; i < count; i++)
+            parts[1].Add(GetValue(i));
+        return parts;
     }
     void Clear() {
         int c = count;
@@ -211,7 +216,7 @@ public:
     Element<T>* Back() { return end; }
     bool Empty() { return beginning == nullptr || end == nullptr;}
     int Size() { return count; }
-    void InsertSearch()
+    void InserSort()
     {
         T elementik;
         int location;
@@ -253,13 +258,36 @@ public:
             space--;
         }
     }
-    void MergeSort() {
-        if (count == 1) {
-            return;
+    /// <summary>
+    /// Рекурсивно делит список по частям, пока может.
+    /// </summary>
+    /// <param name="pair">пара нужна, чтобы потом обратно сшить</param>
+    void SplitterPart(MyList<T> pair) {
+        if (count > 1) {
+            MyList<T>* parts = Split(); //Split() возвращает указатель на массив из двух частей спиика
+            parts[0].SplitterPart(parts[1]);
+            parts[1].SplitterPart(parts[0]);
         }
         else {
-
+            MergerPart(pair);
         }
+    }
+    /// <summary>
+    /// По аналогии должно рекурсивно все сшивать, но я не знаю, как заставить это работать.
+    /// </summary>
+    /// <param name="pair"></param>
+    /// <returns></returns>
+    MyList<T> MergerPart(MyList<T> pair) {
+        MyList<T> merged;
+        merged.Add(GetValue(0));//объединение работает только с единичными массивами, да
+        merged.Add(pair.GetValue(0));
+        if (GetValue(0) > pair.GetValue(0)) {
+            merged.Switch(0, 1);
+        }
+        return merged;
+    }
+    void MergeSort() {
+        
     }
     void CountSort() {
         int max = (int)Max();
@@ -323,24 +351,6 @@ public:
         }return -9;
     }
 };
-int tochka1(MyList<char>& kuks) {
-    int mesto = 0;
-    char c;
-    printf("Input a string: ");
-    c = getchar();
-    while (c != '\n') {
-        kuks.Add(c);
-        c = getchar();
-    }
-    for (int i = 0; i < kuks.Size(); i++) {
-        if (kuks.GetValue(i) == '.')
-        {
-            mesto = i;
-            break;
-        }
-    }
-    return mesto + 1;
-}
    void do_magic(MyList<char>& s) {
     while (s.Front()->data == ' ') {
         s.DeletebyValue(' ');
@@ -366,6 +376,11 @@ int main()
     if (somelist.SearchWhile(selm, 0, b) >= 0)
         printf("searched el in list");
     else printf("this el not in list");
+=======
+    somelist.Scanner("lbuigiuguoguoguooi8h8ipuipuogivgiohuvuohgiikhiv");
+    somelist.ChoiceSort();
+    somelist.PrinterViaCurrent();
+>>>>>>> 3dd3c3a73163740bc0e42ef781bb03e91651244f
 }
 
 // Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"
