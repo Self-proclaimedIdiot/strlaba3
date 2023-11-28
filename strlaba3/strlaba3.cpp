@@ -283,7 +283,63 @@ public:
         }
         free(a);
     }
+    int Search(T selm, int l, int r)
+    {
+        printf("borders - %d %d", l, r);
+        printf("\n");
+        T midel = Move((l + r) / 2)->data;
+        printf("elem = %c", midel);
+        printf("\n");
+        if (selm > midel)
+        {
+            int i = (l + r) / 2 + 1;
+            Search(selm, i, count);
+        }
+        else if (selm < midel)
+        {
+            int i = (l + r) / 2 - 1;
+            Search(selm, 0, i);
+        }
+        else return midel;
+    }
+    int SearchWhile(T selm, int l, int r)
+    {
+        while (l <= r)
+        {
+            printf("borders - %d %d", l, r);
+            printf("\n");
+            T midel = Move((l + r - 1) / 2)->data;
+            printf("elem = %c", midel);
+            printf("\n");
+            if (selm < midel)
+                r = (l + r) / 2 - 1;
+            else if (selm > midel)
+                l = (l + r) / 2 + 1;
+            else
+            {
+                return midel;
+            }
+        }return -9;
+    }
 };
+int tochka1(MyList<char>& kuks) {
+    int mesto = 0;
+    char c;
+    printf("Input a string: ");
+    c = getchar();
+    while (c != '\n') {
+        kuks.Add(c);
+        c = getchar();
+    }
+    for (int i = 0; i < kuks.Size(); i++) {
+        if (kuks.GetValue(i) == '.')
+        {
+            mesto = i;
+            break;
+        }
+    }
+    return mesto + 1;
+}
    void do_magic(MyList<char>& s) {
     while (s.Front()->data == ' ') {
         s.DeletebyValue(' ');
@@ -300,6 +356,14 @@ int main()
     somelist.Scanner("e575457475453656434634636647435i0i3ur09q3ur03u04873q9-48-9348q3uq07ruu90890-9-00i-i9i-i-9i9");
     somelist.CountSort();
     somelist.PrinterViaCurrent();
+    int b = somelist.Size();
+    char selm = 's';
+    somelist.ChoiceSort();
+    somelist.Printer();
+    printf(" ento bil list \n");
+    if (somelist.Search(selm, 0, b) >= 0)
+        printf("searched el in list");
+    else printf("this el not in list");
 }
 
 // Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"
