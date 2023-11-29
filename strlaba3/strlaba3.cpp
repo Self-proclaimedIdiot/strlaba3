@@ -235,18 +235,18 @@ public:
     }
     void ExchangeSort()
     {
-        int smena = 0;
+        int chng = 0;
         do {
-            smena = 0;
+            chng = 0;
             for (int i = 0; i < Size()-1; i++)
             {
                 if (GetValue(i+1) < GetValue(i))
                 {
                     Switch(i + 1, i);
-                    smena += 1;
+                    chng += 1;
                 }
             }
-        } while (smena);
+        } while (chng);
     }
     void BrushSort(){
         int space = count-1;
