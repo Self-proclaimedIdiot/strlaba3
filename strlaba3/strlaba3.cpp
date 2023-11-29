@@ -189,7 +189,7 @@ public:
             i++;
         }
     }
-    MyList<T>* Split() {
+   /* MyList<T>* Split() {
         MyList<T>* parts = (MyList<T>*)calloc(2, sizeof(MyList<T>));
         int i;
         for(i = 0;i < count / 2;i++)
@@ -197,7 +197,7 @@ public:
         for (i = count / 2; i < count; i++)
             parts[1].Add(GetValue(i));
         return parts;
-    }
+    }*/
     void Clear() {
         int c = count;
         for (int i = 1; i <= c; i++) {
@@ -258,7 +258,7 @@ public:
             space--;
         }
     }
-    /// <summary>
+ /*  /// <summary>
     /// Рекурсивно делит список по частям, пока может.
     /// </summary>
     /// <param name="pair">пара нужна, чтобы потом обратно сшить</param>
@@ -288,7 +288,7 @@ public:
     }
     void MergeSort() {
         
-    }
+    }*/ 
     void CountSort() {
         int max = (int)Max();
         int* a = (int*)calloc(max+1, sizeof(int));
@@ -336,11 +336,11 @@ public:
     }
     int Search(T selm, int l, int r)
     {
-        printf("borders - %d %d", l, r);
-        printf("\n");
+       // printf("borders - %d %d", l, r);
+      //  printf("\n");
         T midel = Move((l + r) / 2)->data;
         printf("elem = %c", midel);
-        printf("\n");
+      //  printf("\n");
         if (selm > midel)
         {
             int i = (l + r) / 2 + 1;
@@ -357,11 +357,11 @@ public:
     {
         while (l <= r)
         {
-            printf("borders - %d %d", l, r);
-            printf("\n");
-            T midel = Move((l + r - 1) / 2)->data;
-            printf("elem = %c", midel);
-            printf("\n");
+          //  printf("borders - %d %d", l, r);
+          //  printf("\n");
+            T midel = Move((l + r) / 2)->data;
+          //  printf("elem = %c", midel);
+          //  printf("\n");
             if (selm < midel)
                 r = (l + r) / 2 - 1;
             else if (selm > midel)
@@ -397,36 +397,41 @@ int tochka1()
         return mesto;
     else return 0;
 }
-   void do_magic(MyList<char>& s) {
+ /* void do_magic(MyList<char>& s) {
     while (s.Front()->data == ' ') {
         s.DeletebyValue(' ');
     }
     while (s.Back()->data == ' ') {
         s.Delete(s.Size() - 1);
     }
-}
+}*/ 
 
 
 int main()
 {
-    MyList<char> somelist;
-   // printf("Mesto: %d", tochka1());
-   // printf("\n");
-    //somelist.Scanner("e575457475453656434634636647435i0i3ur09q3ur03u04873q9-48-9348q3uq07ruu90890-9-00i-i9i-i-9i9");
-    somelist.Scanner("654987321gfdcba");
-  //  somelist.CountSort();
-  //  somelist.PrinterViaCurrent();
-    int b = somelist.Size();
-    char selm = '6';
-    somelist.QuickSort(0,b-1);
-    somelist.Printer();
-    printf(" ento bil list \n");
-    if (somelist.SearchWhile(selm, 0, b) >= 0)
+    MyList<char> kuksik;
+  //  printf("Mesto: %d", tochka1());
+    //printf("\n");
+    kuksik.Scanner("987654dbca");
+   kuksik.CountSort(); 
+    kuksik.BrushSort();
+   kuksik.BubbleSort(); 
+  kuksik.ChoiceSort(); 
+    kuksik.ExchangeSort();
+   kuksik.InserSort();
+    kuksik.ShakerSort();
+    kuksik.PrinterViaCurrent();
+    int b = kuksik.Size();
+    char selm = 'a';
+   // kuksik.QuickSort(0,b-1);
+ //   kuksik.Printer();
+   printf("\n");
+   if (kuksik.SearchWhile(selm, 0, b) >= 0)
         printf("searched el in list");
     else printf("this el not in list");
-   // somelist.Scanner("lbuigiuguoguoguooi8h8ipuipuogivgiohuvuohgiikhiv");
-    //somelist.ChoiceSort();
-    //somelist.PrinterViaCurrent();
+   // kuksik.Scanner("lbuigiuguoguoguooi8h8ipuipuogivgiohuvuohgiikhiv");
+    //kuksik.ChoiceSort();
+    //kuksik.PrinterViaCurrent();
 }
 
 // Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"
