@@ -409,29 +409,29 @@ int tochka1()
 
 int main()
 {
-    MyList<char> kuksik;
+    MyList<char> somelist;
   //  printf("Mesto: %d", tochka1());
     //printf("\n");
-    kuksik.Scanner("987654dbca");
-   kuksik.CountSort(); 
-    kuksik.BrushSort();
-   kuksik.BubbleSort(); 
-  kuksik.ChoiceSort(); 
-    kuksik.ExchangeSort();
-   kuksik.InserSort();
-    kuksik.ShakerSort();
-    kuksik.PrinterViaCurrent();
-    int b = kuksik.Size();
+    somelist.Scanner("987654dbca");
+   somelist.CountSort(); 
+    somelist.BrushSort();
+   somelist.BubbleSort(); 
+  somelist.ChoiceSort(); 
+    somelist.ExchangeSort();
+   somelist.InserSort();
+    somelist.ShakerSort();
+    somelist.PrinterViaCurrent();
+    int b = somelist.Size();
     char selm = 'a';
-   // kuksik.QuickSort(0,b-1);
- //   kuksik.Printer();
+   // somelist.QuickSort(0,b-1);
+ //   somelist.Printer();
    printf("\n");
-   if (kuksik.SearchWhile(selm, 0, b) >= 0)
+   if (somelist.SearchWhile(selm, 0, b) >= 0)
         printf("searched el in list");
     else printf("this el not in list");
-   // kuksik.Scanner("lbuigiuguoguoguooi8h8ipuipuogivgiohuvuohgiikhiv");
-    //kuksik.ChoiceSort();
-    //kuksik.PrinterViaCurrent();
+   // somelist.Scanner("lbuigiuguoguoguooi8h8ipuipuogivgiohuvuohgiikhiv");
+    //somelist.ChoiceSort();
+    //somelist.PrinterViaCurrent();
 }
 
 // Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"
