@@ -334,7 +334,7 @@ public:
         if (lh < j) QuickSort(lh, j);
         if (i < rh) QuickSort(i, rh);
     }
-    int Search(T selm, int l, int r)
+    int Search(T selm, int l, int r) //лучше использовать SearchWhile (тот же поиск, но лучше)
     {
        // printf("borders - %d %d", l, r);
       //  printf("\n");
